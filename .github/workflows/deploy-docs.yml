@@ -12,10 +12,8 @@ jobs:
           python-version: '3.8'
       - run: python -m pip install pipenv
       - run: python -m pipenv sync --dev
-      - run: python -m pipenv run mkdocs build
-      - uses: peaceiris/actions-gh-pages@v3.6.1
-        with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          external_repository: yukihiko-shinoda/hello-world-github-pages-mkdocs
-          publish_branch: master
-          publish_dir: ./site
+      # @see https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#using-encrypted-secrets-in-a-workflow
+      # @see https://stackoverflow.com/questions/18935539/authenticate-with-github-using-a-token/18936804#18936804
+      - run: python -m pipenv run mkdocs gh-deploy --force --remote-name "https://x-access-token:${PERSONAL_TOKEN}@github.com/yukihiko-shinoda/hello-world-github-pages-mkdocs.git" --verbose
+        env:
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
