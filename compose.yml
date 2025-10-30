@@ -1,0 +1,9 @@
+services:
+  mkdocs:
+    build: .
+    image: futureys/mkdocs:development
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/workspace/
+      - /workspace/.venv

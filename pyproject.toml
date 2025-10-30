@@ -1,0 +1,7 @@
+[project]
+name = "hello-world-mkdocs"
+version = "0.1.0"
+description = "The hello world project for MkDocs."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["mkdocs"]
